@@ -45,7 +45,7 @@ public class GridManager : MonoBehaviour
 
     void Start()
     {
-        m_startPosition = new Vector2(-m_width * 0.5f, m_height * 0.5f);
+        m_startPosition = new Vector2(0, 0);
 
         m_tileMatrix = new Tile[m_width][];
 
