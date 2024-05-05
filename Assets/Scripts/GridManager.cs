@@ -29,7 +29,7 @@ public class GridManager : MonoBehaviour
     [Header("Setup")]
     [SerializeField] float m_spacing;
     [SerializeField] int m_width, m_height;    
-    Vector2 m_startPosition;
+    [SerializeField] Vector2 m_startPosition;
 
     [HideInInspector] public static GridManager Instance;
 
@@ -45,8 +45,6 @@ public class GridManager : MonoBehaviour
 
     void Start()
     {
-        m_startPosition = new Vector2(0, 0);
-
         m_tileMatrix = new Tile[m_width][];
 
         for (int i = 0; i < m_width; i++)
@@ -90,10 +88,10 @@ public class GridManager : MonoBehaviour
     {
         Vector2 resultPos = pos;
 
-        resultPos.x = Mathf.Floor(resultPos.x / m_spacing) * m_spacing;
+        resultPos.x = Mathf.Floor((resultPos.x - m_startPosition.x) / m_spacing) * m_spacing + m_startPosition.x;
         resultPos.x = Mathf.Clamp(resultPos.x, m_startPosition.x, m_startPosition.x + m_width);
 
-        resultPos.y = Mathf.Floor(resultPos.y / m_spacing) * m_spacing;        
+        resultPos.y = Mathf.Floor((resultPos.y - m_startPosition.y) / m_spacing) * m_spacing + m_startPosition.y;        
         resultPos.y = Mathf.Clamp(resultPos.y, m_startPosition.y, m_startPosition.y + m_height);
 
         return resultPos;
